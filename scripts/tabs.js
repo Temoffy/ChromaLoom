@@ -1,52 +1,22 @@
 //Timothy H., feb 2025
 //class project ChromaLoom
 
-//handles the 2 tab layers, credit to https://www.w3schools.com/howto/howto_js_tabs.asp
-
-document.write("Hello World");
-
-function openCity(evt, cityName) {
-  // Declare all variables
-  var i, tabcontent, tablinks;
+//handles the 2 tab layers, credit to https://www.w3schools.com/howto/howto_js_tabs.asp for the starting point
+function openTab(tabsetName, tabName) {
+    var tabGroup, oldTabs, activeTab;
   
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
+    //don't touch any other tab systems!
+    tabGroup = document.getElementById(tabsetName);
 
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
+    // unselect all buttons and hide content
+    oldTabs = tabGroup.getElementsByClassName("active "+tabsetName);
+    while (oldTabs.length>0) {//for (var i = 0; i < tabLinks.length; i++) {
+        oldTabs[0].className = oldTabs[0].className.replace(" active", "");
+    }
 
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
-} 
-
-function openTab(evt, tabsetName, tabName) {
-
-  // Declare all variables
-  var i, tabset, tabcontent, tablinks;
-  
-  //don't touch any other tab systems!
-  tabset = document.getElementById(tabsetName);
-
-  // Get all elements with class="tabcontent" and hide them
-  tabcontent = tabset.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-  // Get all elements with class="tablinks" and remove the class "active"
-  tablinks = tabset.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.className += " active";
+    // Show the right tab contents and select the button
+    activeTab = tabGroup.getElementsByClassName(tabName);//[0].className += " active";
+    for (var i = 0; i < activeTab.length; i++) {
+        activeTab[i].className = activeTab[i].className += " active";
+    }
 }
