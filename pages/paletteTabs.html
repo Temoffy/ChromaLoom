@@ -1,0 +1,19 @@
+<!-- paletteTabs.html -->
+<div id="palettetabs" class="tabset">
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks palettetabs storage active" onclick="openTab('palettetabs', 'storage')">Palette Storage</button>
+        <button class="tablinks palettetabs palettetools" onclick="openTab('palettetabs', 'palettetools')">Palette Tools</button>
+        <button class="tablinks palettetabs saveload" onclick="openTab('palettetabs', 'saveload')">Import/Export</button>
+    </div>
+    <!-- Tab content -->
+    <div class="tabcontent palettetabs storage active">
+        <p>This will be where you can swap your currently 'equipped' palette, sort your stored ones, and shuffle colors between them</p>
+    </div>
+    <div class="tabcontent palettetabs palettetools">
+        <p>This will be where you can sort your current palette in various ways as well as name the colors and the palette.</p>
+    </div>
+    <div class="tabcontent palettetabs saveload">
+        <p>This will be where you can import and export your palettes in several forms such as css, png, and csv; formatted for your readability in hex, rgb, oklab, hsl, or cmyk</p>
+    </div>
+</div>

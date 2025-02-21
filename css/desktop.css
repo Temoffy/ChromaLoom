@@ -36,3 +36,7 @@
 .tabset .tabcontent.active {
     display: block !important; /*dunno why simply coming after the other tabcontent rule isn't enough*/
 }
+
+#upperbuttons {
+    text-align:right;
+}

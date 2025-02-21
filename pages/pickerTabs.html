@@ -1,0 +1,19 @@
+<!-- pickerTabs.html -->
+<div id="pickertabs" class="tabset">
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks pickertabs colorpicker active" onclick="openTab('pickertabs', 'colorpicker')">Pick Colors</button>
+        <button class="tablinks pickertabs colorsampler" onclick="openTab('pickertabs', 'colorsampler')">Sample Colors</button>
+        <button class="tablinks pickertabs extractor" onclick="openTab('pickertabs', 'extractor')">Extract Colors</button>
+    </div>
+    <!-- Tab content -->
+    <div class="tabcontent pickertabs colorpicker active">
+        <p>This will be a colorpicker that can toggle between color spaces</p>
+    </div>
+    <div class="tabcontent pickertabs colorsampler">
+        <p>This will be a eyedropper tool to pick colors from pasted, drag and dropped, or uploaded images</p>
+    </div>
+    <div class="tabcontent pickertabs extractor">
+        <p>This will be an automated tool to pull the dominant colors out of pasted, drag and dropped, or uploaded images</p>
+    </div>
+</div>
