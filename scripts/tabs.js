@@ -1,5 +1,5 @@
-//Timothy Hopping, feb 2025, CC-BY-4 license, LeTU web dev class
-//parallel project draft 1
+//Timothy H., feb 2025
+//class project ChromaLoom
 
 //handles the 2 tab layers, credit to https://www.w3schools.com/howto/howto_js_tabs.asp
 
