@@ -12,7 +12,7 @@ ChromaLoom
 <body>
   <main>
     <div id="upperbuttons">
-      <p>about  profile</p>
+      <p>about &nbsp &nbsp profile</p>
     </div>
     <article id="textLeft">
       <h2>Welcome to ChromaLoom</h2>
