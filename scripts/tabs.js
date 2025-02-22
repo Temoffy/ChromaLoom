@@ -3,15 +3,16 @@
 
 //handles the 2 tab layers, credit to https://www.w3schools.com/howto/howto_js_tabs.asp for the starting point
 function openTab(tabsetName, tabName) {
-    var tabGroup, oldTabs, activeTab;
+    var tabGroup, allTabs, activeTab;
   
     //don't touch any other tab systems!
     tabGroup = document.getElementById(tabsetName);
 
     // unselect all buttons and hide content
-    oldTabs = tabGroup.getElementsByClassName("active "+tabsetName);
-    while (oldTabs.length>0) {//for (var i = 0; i < tabLinks.length; i++) {
-        oldTabs[0].className = oldTabs[0].className.replace(" active", "");
+    allTabs = tabGroup.getElementsByClassName("active "+tabsetName);
+    //for some Godforsaken reason the list seems to refresh the selection every time it is touched
+    while (allTabs.length>0) {//for (var i = 0; i < tabLinks.length; i++) {
+        allTabs[0].className = allTabs[0].className.replace(" active", "");
     }
 
     // Show the right tab contents and select the button
