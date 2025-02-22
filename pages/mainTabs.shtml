@@ -1,0 +1,24 @@
+<!-- mainTabs.shtml -->
+<div id="maintabs" class="tabset">
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks maintabs picker active" onclick="openTab('maintabs', 'picker')">Color Picking</button>
+        <button class="tablinks maintabs generator" onclick="openTab('maintabs', 'generator')">Color Generator</button>
+        <button class="tablinks maintabs palette" onclick="openTab('maintabs', 'palette')">Palette</button>
+        <button class="tablinks maintabs settings" onclick="openTab('maintabs', 'settings')">Settings</button>
+    </div>
+
+    <!-- Tab content -->
+    <div class="tabcontent maintabs picker active">
+        <!--#include virtual="pickerTabs.html"-->
+    </div>
+    <div class="tabcontent maintabs generator">
+        <!--#include virtual="generatorTabs.html"-->
+    </div>
+    <div class="tabcontent maintabs palette">
+        <!--#include virtual="paletteTabs.html"-->
+    </div>
+    <div class="tabcontent maintabs settings">
+        <p>Welcome to settings! <br> mostly going to be changing site colors and displaying advanced options/multiple colorspaces at once; but we'll see</p>
+    </div>
+</div>
