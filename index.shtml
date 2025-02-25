@@ -1,5 +1,5 @@
 <!--
-Timothy H., feb 2025
+Telos, feb 2025
 ChromaLoom
 -->
 
@@ -18,8 +18,40 @@ ChromaLoom
       <h2>Welcome to ChromaLoom</h2>
       <h4>Easing your color palette handling!</h4>
     </article>
-
-    <!--#include virtual="pages/mainTabs.shtml"-->
+    <div class="flex-container">
+      <!--#include virtual="pages/mainTabs.shtml"-->
+      <div>
+        <div class="tab">
+          Palette
+        </div>
+        <div class="flex-container3" style="max-width: 20em;">
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+          <div id="swatch" class="swatch"></div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>

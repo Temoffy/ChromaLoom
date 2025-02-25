@@ -1,4 +1,4 @@
-//Timothy H., feb 2025
+//Telos, feb 2025
 //class project ChromaLoom
 
 //handles the 2 tab layers, credit to https://www.w3schools.com/howto/howto_js_tabs.asp for the starting point
@@ -20,4 +20,8 @@ function openTab(tabsetName, tabName) {
     for (var i = 0; i < activeTab.length; i++) {
         activeTab[i].className = activeTab[i].className += " active";
     }
+}
+
+function openTabSelect(selectObject, tabsetName) {
+    openTab(tabsetName, selectObject.value);
 }

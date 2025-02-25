@@ -1,0 +1,9 @@
+body {
+    width: 95%;
+}
+.flex-container {
+    flex-direction: column;
+}
+.flex-container2 {
+    flex-direction: row;
+}
