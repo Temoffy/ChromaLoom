@@ -1,42 +1,207 @@
 /* Style the tab */
 .tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /* Style the buttons that are used to open the tab content */
 .tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
 
 /* Style the tab content */
 .tabcontent {
-  display: none;
-  border: 1px solid #ccc;
-  border-top: none;
+    display: none;
+    border: 0px solid #ccc;
+    border-top: none;
 }
 
 .tabset .tabcontent.active {
-    display: block !important; /*dunno why simply coming after the other tabcontent rule isn't enough*/
+    display: block !important;
+    /*dunno why simply coming after the other tabcontent rule isn't enough*/
 }
 
 #upperbuttons {
-    text-align:right;
+    text-align: right;
+}
+
+canvas {
+    image-rendering: crisp-edges;
+}
+
+div.colorpicker {
+    position: relative;
+    height: 300px;
+    width: 320px
+}
+
+svg.colorpicker {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+}
+
+canvas.colorpicker_square {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+canvas.colorpicker_slider {
+    position: absolute;
+    left: 287px;
+    top: 10px;
+}
+
+td {
+    padding: 0px 15px 0px 0px;
+}
+
+div.swatch {
+    width: 3em;
+    height: 3em;
+    display: inline-block;
+    background-color: cornflowerblue;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+label {
+    text-align: center;
+    display: inline-block;
+    width: 12px;
+}
+
+    label.formlabel {
+        text-align: left;
+        display: block;
+        width: 100%;
+    }
+
+input {
+    border: 1px solid rgba(0, 0, 0, 0.333);
+    border-radius: 4px;
+    text-align: right;
+    font-family: monospace;
+    color: rgb(30, 30, 30);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+input:invalid {
+    border: red solid 3px !important;
+}
+
+.hex_input {
+    width: 65px;
+}
+
+.value_input {
+    width: 56px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.flex-container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.flex-container3 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+
+.flex-container4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-container > div {
+    flex-grow: 1;
+}
+
+.flex-container2 > div {
+    flex-grow: 1;
+}
+
+.flex-item {
+    padding: 0px 0px 0px 0px;
+}
+
+:root {
+    --radius: 0em;
+    --baseFg: dimgray;
+    --baseBg: white;
+    --accentFg: #006fc2;
+    --accentBg: #bae1ff;
+    --allgood: #1d97b4;
+    --notgood: #db592a;
+}
+
+.theme-pink {
+    --radius: 2em;
+    --baseFg: #c70062;
+    --baseBg: #ffe3f1;
+    --accentFg: #c70062;
+    --accentBg: #ffaad4;
+}
+
+.theme-construction {
+    --radius: 0;
+    --baseFg: white;
+    --baseBg: black;
+    --accentFg: black;
+    --accentBg: orange;
+}
+
+#specificcolorpickerdropdown {
+    font: 1.5em sans-serif;
+    border: 0px solid var(--baseFg);
+    outline: 0;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    border-radius: var(--radius);
+    background-color: #f1f1f1;
+}
+
+    #specificcolorpickerdropdown:hover {
+        background-color: var(--accentBg);
+    }
+
+    #specificcolorpickerdropdown:active {
+        color: var(--accentBg);
+        border-color: var(--accentFg);
+        background-color: var(--accentFg);
+    }
+
+.grid {
+    display: grid;
 }

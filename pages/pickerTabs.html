@@ -1,19 +1,407 @@
 <!-- pickerTabs.html -->
+<script src="scripts/ottosonColorPicker/colorconversion.js"></script>
+<script src="scripts/ottosonColorPicker/hsluv.js"></script>
+<script src="scripts/ottosonColorPicker/constants.js"></script>
+<script src="scripts/ottosonColorPicker/render.js"></script>
+<script src="scripts/ottosonColorPicker/main.js"></script>
+
 <div id="pickertabs" class="tabset">
     <!-- Tab links -->
     <div class="tab">
-        <button class="tablinks pickertabs colorpicker active" onclick="openTab('pickertabs', 'colorpicker')">Pick Colors</button>
-        <button class="tablinks pickertabs colorsampler" onclick="openTab('pickertabs', 'colorsampler')">Sample Colors</button>
-        <button class="tablinks pickertabs extractor" onclick="openTab('pickertabs', 'extractor')">Extract Colors</button>
+        <button class="tablinks pickertabs colorpickertab active" onclick="openTab('pickertabs', 'colorpickertab')">Pick
+            Colors</button>
+        <button class="tablinks pickertabs colorsampler" onclick="openTab('pickertabs', 'colorsampler')">Sample
+            Colors</button>
+        <button class="tablinks pickertabs extractor" onclick="openTab('pickertabs', 'extractor')">Extract
+            Colors</button>
     </div>
     <!-- Tab content -->
-    <div class="tabcontent pickertabs colorpicker active">
-        <p>This will be a colorpicker that can toggle between color spaces</p>
+    <div class="tabcontent pickertabs colorpickertab active">
+        <div id="specificcolorpicker" class="tabset">
+            <select id="specificcolorpickerdropdown" onchange="openTabSelect(this, 'specificcolorpicker')">
+                <option value="oklchpicker">OKLCH</option>
+                <option value="hsvpicker">HSV</option>
+                <option value="okhsvpicker">OKHSV</option>
+                <option value="hslpicker">HSL</option>
+                <option value="okhslpicker">OKHSL</option>
+            </select>
+            <div class="flex-container">
+                <div class="tabcontent specificcolorpicker oklchpicker active">
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="oklch_lc_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="oklch_h_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="oklch_lc_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="oklch_h_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="tabcontent specificcolorpicker hsvpicker">
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsv_sv_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsv_h_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="hsv_sv_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsv_h_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="tabcontent specificcolorpicker okhsvpicker">
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="okhsv_sv_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="okhsv_h_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="okhsv_sv_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="okhsv_h_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="tabcontent specificcolorpicker hslpicker">
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsl_hs_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsl_l_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+
+                            <g transform="translate(10,10)">
+                                <g id="hsl_hs_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsl_l_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="tabcontent specificcolorpicker okhslpicker">
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="okhsl_hs_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="okhsl_l_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+
+                            <g transform="translate(10,10)">
+                                <g id="okhsl_hs_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="okhsl_l_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="tabcontent specificcolorpicker temp">
+                    <!--this junk is other color pickers used in the ottoson color picker I integrated,
+                    but do not intend to use. Removing requires digging into his code.
+                    TODO: refactor colorpicker code for one re-purposeable picker not a dozen sinlgeuse-->
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsl_hl_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsl_s_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+
+                            <g transform="translate(10,10)">
+                                <g id="hsl_hl_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsl_s_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsl_sl_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsl_h_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="hsl_sl_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsl_h_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+
+
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="okhsl_hl_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="okhsl_s_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="okhsl_hl_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="okhsl_s_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="okhsl_sl_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="okhsl_h_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="okhsl_sl_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="okhsl_h_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+
+
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsluv_hs_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsluv_l_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+
+                            <g transform="translate(10,10)">
+                                <g id="hsluv_hs_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsluv_l_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsluv_hl_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsluv_s_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+
+                            <g transform="translate(10,10)">
+                                <g id="hsluv_hl_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsluv_s_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="colorpicker">
+                        <canvas class="colorpicker_square" id="hsluv_sl_canvas" width="257" height="257"></canvas>
+                        <canvas class="colorpicker_slider" id="hsluv_h_canvas" width="31" height="257"></canvas>
+
+                        <svg class="colorpicker" width="326" height="276">
+                            <g transform="translate(10,10)">
+                                <g id="hsluv_sl_manipulator" transform="translate(0,0)">
+                                    <circle cx="0" cy="0" r="5" fill="none" stroke-width="1.75" stroke="#ffffff">
+                                    </circle>
+                                    <circle cx="0" cy="0" r="6" fill="none" stroke-width="1.25" stroke="#000000">
+                                    </circle>
+                                </g>
+                            </g>
+                            <g transform="translate(287,10)">
+                                <g id="hsluv_h_manipulator" transform="translate(0,0)">
+                                    <polygon points="-8,-4 -1,0 -8,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                    <polygon points="38,-4 31,0 38,4" fill="#ffffff" stroke-width="0.8"
+                                        stroke="#000000"></polygon>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <label>H</label> <input type="number" id="hsluv_h_input" min="0" max="360" maxlength="3"
+                        class="value_input"></input>
+                    <label>S</label> <input type="number" id="hsluv_s_input" min="0" max="100" maxlength="3"
+                        class="value_input"></input>
+                    <label>L</label> <input type="number" id="hsluv_l_input" min="0" max="100" maxlength="3"
+                        class="value_input"></input>
+
+                </div>
+                <div class="flex-container2">
+                    <div>
+                        <div id="swatch" class="swatch"></div>
+                        <br />
+                        <input type="text" id="hex_input" maxlength="7" class="hex_input"></input>
+                    </div>
+                    <div class="tabcontent specificcolorpicker oklchpicker active">
+                        <label>H</label> <input type="number" id="oklch_h_input" min="0" max="360" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>C</label> <input type="number" id="oklch_c_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>L<sub>r</sub></label> <input type="number" id="oklch_l_input" min="0" max="100"
+                            maxlength="3" class="value_input"></input>
+                    </div>
+                    <div class="tabcontent specificcolorpicker hsvpicker">
+                        <label>H</label> <input type="number" id="hsv_h_input" min="0" max="360" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>S</label> <input type="number" id="hsv_s_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>V</label> <input type="number" id="hsv_v_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                    </div>
+                    <div class="tabcontent specificcolorpicker okhsvpicker">
+                        <label>H</label> <input type="number" id="okhsv_h_input" min="0" max="360" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>S</label> <input type="number" id="okhsv_s_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>V</label> <input type="number" id="okhsv_v_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+
+                    </div>
+                    <div class="tabcontent specificcolorpicker hslpicker">
+                        <label>H</label> <input type="number" id="hsl_h_input" min="0" max="360" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>S</label> <input type="number" id="hsl_s_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>L</label> <input type="number" id="hsl_l_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                    </div>
+                    <div class="tabcontent specificcolorpicker okhslpicker">
+                        <label>H</label> <input type="number" id="okhsl_h_input" min="0" max="360" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>S</label> <input type="number" id="okhsl_s_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                            <br />
+                        <label>L</label> <input type="number" id="okhsl_l_input" min="0" max="100" maxlength="3"
+                            class="value_input"></input>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
     <div class="tabcontent pickertabs colorsampler">
         <p>This will be a eyedropper tool to pick colors from pasted, drag and dropped, or uploaded images</p>
+
     </div>
     <div class="tabcontent pickertabs extractor">
-        <p>This will be an automated tool to pull the dominant colors out of pasted, drag and dropped, or uploaded images</p>
+        <p>This will be an automated tool to pull the dominant colors out of pasted, drag and dropped, or uploaded
+            images</p>
     </div>
 </div>
