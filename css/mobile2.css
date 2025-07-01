@@ -1,0 +1,17 @@
+.flex-right-adjust{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-down-adjust{
+    display: flex;
+    flex-direction: row;
+}
+
+.content-grid {
+    grid-template-areas:
+        "display palette"
+        "workspace workspace";
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+}

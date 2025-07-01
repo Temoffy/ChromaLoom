@@ -1,0 +1,316 @@
+:root {
+    --size-2:0.146em;
+    --size-1:0.236em;
+    --size0: 0.382em;
+    --size1: 0.618em;
+    --size2: 1em;
+    /* 1xgolden ratio^n relationship */
+    --size3: 1.618em;
+    --size4: 2.618em;
+    --size5: 4.236em;
+    --size6: 6.856em;
+    --size7: 11.089em;
+    --size8: 17.942em;
+    --size9: 29.030em;
+    /* I swear there's a slight scale bug in css oklab or in ottoson's color picker
+    problem for later though */
+    /*brightest background*/
+    --colorback1: #ffffff;
+    /*darker background*/
+    --colorback2: oklab(from var(--colorback1) calc(l - .12) a b);
+    /*darkest background*/
+    --colorback3: oklab(from var(--colorback2) calc(l - .12) a b);
+    /*highest contrast*/
+    --colorfore1: #080808;
+    /*lower contrast*/
+    --colorfore2: oklab(from var(--colorfore1) calc(l + .12) a b);
+    /*lowest contrast*/
+    --colorfore3: oklab(from var(--colorfore2) calc(l + .12) a b);
+    /*light colored background*/
+    --colorallgood1: oklch(from var(--colorback2) l .11 200);
+    /*dark colored background*/
+    --colorallgood2: oklch(from var(--colorback3) l .11 200);
+    /*compliments of the colored backgrounds*/
+    --colornogood1: oklab(from var(--colorallgood1) l calc(a * -1) calc(b * -1));
+    --colornogood2: oklab(from var(--colorallgood2) l calc(a * -1) calc(b * -1));
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colorback3: #080808;
+        --colorback2: oklab(from var(--colorback3) calc(l + .12) a b);
+        /*darker background*/
+        --colorback1: oklab(from var(--colorback2) calc(l + .12) a b);
+        /*darkest background*/
+        --colorfore1: #ffffff;
+        --colorfore2: oklab(from var(--colorfore1) calc(l - .12) a b);
+        --colorfore3: oklab(from var(--colorfore2) calc(l - .12) a b);
+    }
+}
+
+* {
+    font-family: sans-serif;
+    font-size: large;
+    font-weight: 500;
+    color: var(--colorfore1);
+    accent-color: var(--colorallgood1);
+    padding:0;
+    margin:0;
+}
+
+body {
+    background-color: var(--colorback3);
+    padding: 0px;
+    margin: 0px;
+}
+
+div {
+    /*for layout visibility while drafting TODO remove
+    border: var(--size0) solid var(--colorback2);*/
+    flex: 1, 1;
+    background-color: var(--colorback1);
+}
+
+.flex-right-adjust {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-right-fixed {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-down-adjust {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-down-fixed {
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    font-size:x-large;
+    font-weight:600;
+}
+h2{
+    font-size: larger;
+    font-weight: 550;
+}
+
+#page-content-layout{
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--colorback3);
+    gap: var(--size1);
+}
+
+#header-group{
+    width: 100%;
+    background-color: var(--colorback3);
+    align-items: center;
+}
+
+#logo-bar{
+    align-self: stretch;
+    justify-content: space-around;
+    height: var(--size4);
+}
+
+#webpage-title{
+    align-items: center;
+    gap: var(--size0);
+}
+
+img.logo{
+    height: var(--size3);
+    object-fit: contain;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-areas:
+        "picking tools palette settings"
+        "subtab-1 subtab-2 subtab-3 subtab-4";
+    grid-template-rows: var(--size4),var(--size3);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--colorback3);
+    gap:0px;
+    width: var(--size9);
+}
+    .menu-grid > div{
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--colorback3);
+    }
+
+    .menu-grid > div.picking-tab, .menu-grid > div.tools-tab,.menu-grid > div.palette-tab,.menu-grid > div.settings-tab{
+        border-top:2px solid var(--colorback2);
+        border-bottom:1px solid var(--colorback3);
+        font-size: larger;
+        font-weight: 550;
+    }
+
+    .menu-grid button {
+        background-color: var(--colorback1);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.3s;
+        width:100%;
+        height:100%;
+        padding: var(--size-2);
+        font-size: inherit;
+        font-weight: inherit;
+    }
+    .menu-grid button:hover {
+        background-color: var(--colorback2);
+    }
+    .menu-grid button.active{
+        background-color: var(--colorallgood1);
+    }
+    .menu-grid button.active:hover{
+        background-color: var(--colorallgood2);
+    }
+
+    .menu-grid div.subtab-1 button,.menu-grid div.subtab-2  button,.menu-grid div.subtab-3 button,.menu-grid div.subtab-4 button{
+        border-radius: var(--size1) var(--size1) var(--size1) var(--size1);
+        font-weight: 100;
+        font-size:medium;
+        margin: 1px;
+    }
+
+    .menu-grid > div.picking-tab{
+        grid-area:picking;
+    }
+    .menu-grid > div.tools-tab {
+        grid-area: tools;
+    }
+    .menu-grid > div.palette-tab {
+        grid-area: palette;
+    }
+    .menu-grid > div.settings-tab {
+        grid-area: settings;
+    }
+    .menu-grid > div.subtab-1 {
+        grid-area: subtab-1;
+    }
+    .menu-grid > div.subtab-2 {
+        grid-area: subtab-2;
+    }
+    .menu-grid > div.subtab-3 {
+        grid-area: subtab-3;
+    }
+    .menu-grid > div.subtab-4 {
+        grid-area: subtab-4;
+    }
+
+.content-grid {
+    display: grid;
+    grid-template-areas:
+        "display palette"
+        "workspace palette";
+    grid-template-columns: 2.618fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--size1);
+    width: 80%;
+    background-color: var(--colorback3);
+}
+
+    .content-grid > div.display-slot {
+        grid-area: display;
+        border-radius: var(--size2);
+        height: var(--size7);
+        padding: var(--size0);
+    }
+
+    .content-grid > div.palette-slot {
+        grid-area: palette;
+        border-radius: var(--size2);
+        padding: var(--size0);
+    }
+
+    .content-grid > div.workspace-slot {
+        grid-area: workspace;
+        border-radius: var(--size2);
+        min-height: var(--size8);
+        padding: var(--size0);
+    }
+
+.tabcontent{
+    display: none;
+    width:100%;
+    height:100%;
+    background-color: inherit;
+    border-radius: inherit;
+}
+.tabcontent.active{
+    display:block !important;
+}
+
+/*colorpicker formatting*/
+canvas {
+    image-rendering: crisp-edges;
+}
+div.colorpicker {
+    position: relative;
+    height: 300px;
+    width: 320px
+}
+svg.colorpicker {
+    position: absolute;
+    left: 0;
+    pointer-events: none;
+}
+canvas.colorpicker_square {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+canvas.colorpicker_slider {
+    position: absolute;
+    left: 287px;
+    top: 10px;
+}
+td {
+    padding: 0px 15px 0px 0px;
+}
+div.swatch {
+    width: 90%;
+    height: 90%;
+    display: inline-block;
+    background-color: cornflowerblue;
+    border: 1px solid var(--colorfore3);
+}
+label {
+    text-align: center;
+    display: inline-block;
+    width: 12px;
+}
+    label.formlabel {
+        text-align: left;
+        display: block;
+        width: 100%;
+    }
+
+input {
+    border: 1px solid var(--colorfore3);
+    border-radius: 4px;
+    text-align: right;
+    color: var(--colorfore1);
+    background-color: var(--colorback1);
+}
+input:invalid {
+    border: red solid 3px !important;
+}
+.hex_input {
+    width: 65px;
+}
+.value_input {
+    width: 56px;
+}

@@ -553,8 +553,8 @@ function render_static()
     {
         let data = new Uint8ClampedArray(picker_size*slider_width*4);
 
-        let L = 0.7502;
-        let C = 0.127552;
+        let L = 0.8375;
+        let C = 0.1384;
 
         for (let i = 0; i < picker_size; i++) 
         {
